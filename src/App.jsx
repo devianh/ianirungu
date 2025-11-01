@@ -66,7 +66,7 @@ export default function App() {
       {/* Hero Section */}
       <section className="flex flex-col items-center justify-center text-center mt-12 px-6">
         <div className="relative">
-          <img src="https://x.com/IanhBrian/photo" alt="Profile" className="w-52 h-52 rounded-full object-cover shadow-lg" />
+          <img src="/profile.jpg" alt="Profile" className="w-52 h-52 rounded-full object-cover shadow-lg" />
           <div className="absolute inset-0 rounded-full ring-4 ring-purple-500"></div>
           <div className="absolute bottom-0 right-0 translate-y-6 bg-purple-600 text-black font-bold px-4 py-1 rounded-full">
             💻 Full Stack Developer
