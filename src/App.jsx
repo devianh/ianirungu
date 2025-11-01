@@ -161,10 +161,11 @@ export default function App() {
           <div className="p-6 rounded-xl border border-gray-800 bg-gray-900">
             <h3 className="font-semibold mb-3">Reach Me Directly</h3>
             <ul className="space-y-2 text-sm text-gray-300">
-              <li>📞 WhatsApp: +254 712 345 678</li>
-              <li>📧 Email: ianirungu@example.com</li>
+              <li>📞 WhatsApp: +254 759 670 729</li>
+              <li>📧 Email: emrgian@gmail.com.com</li>
               <li>🔗 LinkedIn: linkedin.com/in/ianirungu</li>
-              <li>💻 GitHub: github.com/ianirungu</li>
+              <li>💻 GitHub: github.com/devianh</li>
+              <li>Instagram: https://www.instagram.com/ianh.irungu/</li>
             </ul>
           </div>
         </div>
@@ -176,7 +177,7 @@ export default function App() {
       </footer>
 
       {/* Floating WhatsApp */}
-      <a href="https://wa.me/254712345678" target="_blank" rel="noreferrer" className="fixed right-6 bottom-6 p-4 rounded-full shadow-lg" style={{ background: 'linear-gradient(90deg,#25D366,#128C7E)' }}>
+      <a href="https://wa.me/254759670729" target="_blank" rel="noreferrer" className="fixed right-6 bottom-6 p-4 rounded-full shadow-lg" style={{ background: 'linear-gradient(90deg,#25D366,#128C7E)' }}>
         <svg width="26" height="26" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg"><path d="M20.52 3.48C18.27 1.22 15.18 0 12 0 5.37 0 .03 5.34.03 12c0 2.12.56 4.1 1.62 5.83L0 24l6.41-1.71C8.08 22.67 9.99 23.1 12 23.1c6.63 0 11.97-5.34 11.97-11.99 0-3.18-1.22-6.27-3.45-8.42zM12 21.5c-1.8 0-3.55-.48-5.06-1.39l-.36-.22-3.8 1.02 1.02-3.7-.23-.36C2.98 14.1 2.5 12.4 2.5 10.6 2.5 6.3 6.3 2.5 10.6 2.5c2.3 0 4.45.9 6.07 2.52 1.62 1.62 2.52 3.77 2.52 6.07 0 4.3-3.8 8.1-8.1 8.1z"/></svg>
       </a>
     </div>
