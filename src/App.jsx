@@ -36,7 +36,7 @@ export default function App() {
     setSending(true);
 
     // Replace with your actual WhatsApp number in international format (e.g., 254712345678)
-    const phone = "254712345678";
+    const phone = "254759670729";
     const text = `New portfolio message from ${form.name} (%0AEmail: ${form.email}%0A%0A${form.message})`;
     const whatsappUrl = `https://wa.me/${phone}?text=${text}`;
 
@@ -66,7 +66,7 @@ export default function App() {
       {/* Hero Section */}
       <section className="flex flex-col items-center justify-center text-center mt-12 px-6">
         <div className="relative">
-          <img src="https://via.placeholder.com/220?text=Profile" alt="Profile" className="w-52 h-52 rounded-full object-cover shadow-lg" />
+          <img src="https://x.com/IanhBrian/photo" alt="Profile" className="w-52 h-52 rounded-full object-cover shadow-lg" />
           <div className="absolute inset-0 rounded-full ring-4 ring-purple-500"></div>
           <div className="absolute bottom-0 right-0 translate-y-6 bg-purple-600 text-black font-bold px-4 py-1 rounded-full">
             💻 Full Stack Developer
