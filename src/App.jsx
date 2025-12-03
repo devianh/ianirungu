@@ -140,23 +140,70 @@ export default function App() {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="max-w-5xl mx-auto px-6 mt-16 mb-20">
-        <h2 className="text-2xl font-semibold mb-4">✉️ Contact Me</h2>
-        <div className="grid md:grid-cols-2 gap-6">
-          <form onSubmit={handleSubmit} className="p-6 rounded-xl border border-gray-800 bg-gray-900">
-            <label className="block text-sm font-medium mb-2">Name</label>
-            <input name="name" value={form.name} onChange={handleChange} className="w-full px-3 py-2 rounded bg-black border border-gray-700 mb-3" />
+<div className="connect-section mt-4">
+  <h3 className="connect-title">Connect With Me</h3>
 
-            <label className="block text-sm font-medium mb-2">Email</label>
-            <input name="email" value={form.email} onChange={handleChange} className="w-full px-3 py-2 rounded bg-black border border-gray-700 mb-3" />
+  <div className="connect-grid">
 
-            <label className="block text-sm font-medium mb-2">Message</label>
-            <textarea name="message" value={form.message} onChange={handleChange} rows={4} className="w-full px-3 py-2 rounded bg-black border border-gray-700 mb-4" />
+    <a href="https://linkedin.com/in/ianirungu" className="connect-card">
+      <div className="icon linkedin"></div>
+      <div className="text">
+        <h4>LinkedIn</h4>
+        <p>Let's Connect</p>
+      </div>
+    </a>
 
-            <button type="submit" disabled={sending} className="w-full px-4 py-2 rounded-full bg-gradient-to-r from-purple-500 to-indigo-500 font-semibold">
-              {sending ? "Sending..." : "Send via WhatsApp"}
-            </button>
-          </form>
+    <a href="https://www.instagram.com/ianh.irungu/" className="connect-card">
+      <div className="icon instagram"></div>
+      <div className="text">
+        <h4>Instagram</h4>
+        <p>@ianh.irungu</p>
+      </div>
+    </a>
+
+    <a href="#" className="connect-card">
+      <div className="icon youtube"></div>
+      <div className="text">
+        <h4>YouTube</h4>
+        <p>Add link later</p>
+      </div>
+    </a>
+
+    <a href="https://github.com/devianh" className="connect-card">
+      <div className="icon github"></div>
+      <div className="text">
+        <h4>GitHub</h4>
+        <p>@devianh</p>
+      </div>
+    </a>
+
+    <a href="#" className="connect-card">
+      <div className="icon tiktok"></div>
+      <div className="text">
+        <h4>TikTok</h4>
+        <p>@your_tiktok</p>
+      </div>
+    </a>
+
+    <a href="https://wa.me/254759670729" className="connect-card">
+      <div className="icon whatsapp"></div>
+      <div className="text">
+        <h4>WhatsApp</h4>
+        <p>+254 759 670 729</p>
+      </div>
+    </a>
+
+    <a href="mailto:emrgian@gmail.com" className="connect-card">
+      <div className="icon email"></div>
+      <div className="text">
+        <h4>Email</h4>
+        <p>emrgian@gmail.com</p>
+      </div>
+    </a>
+
+  </div>
+</div>
+
 
           <div className="p-6 rounded-xl border border-gray-800 bg-gray-900">
             <h3 className="font-semibold mb-3">Reach Me Directly</h3>
