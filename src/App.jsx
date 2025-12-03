@@ -140,6 +140,9 @@ export default function App() {
       </section>
 
       {/* Contact Section */}
+
+
+
 <div className="connect-section mt-4">
   <h3 className="connect-title">Connect With Me</h3>
 
@@ -203,19 +206,6 @@ export default function App() {
 
   </div>
 </div>
-
-
-          <div className="p-6 rounded-xl border border-gray-800 bg-gray-900">
-            <h3 className="font-semibold mb-3">Reach Me Directly</h3>
-            <ul className="space-y-2 text-sm text-gray-300">
-              <li>📞 WhatsApp: +254 759 670 729</li>
-              <li>📧 Email: emrgian@gmail.com.com</li>
-              <li>🔗 LinkedIn: linkedin.com/in/ianirungu</li>
-              <li>💻 GitHub: github.com/devianh</li>
-              <li>Instagram: https://www.instagram.com/ianh.irungu/</li>
-            </ul>
-          </div>
-        </div>
       </section>
 
       {/* Footer */}
