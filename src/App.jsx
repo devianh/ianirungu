@@ -111,7 +111,7 @@ export default function App() {
         <div className="grid sm:grid-cols-2 gap-4">
           <div className="p-4 rounded-lg border border-gray-800">
             <h3 className="font-semibold">B.Sc. Computer Science</h3>
-            <p className="text-sm text-gray-400">University Name — Year</p>
+            <p className="text-sm text-gray-400">Egerton University — student(joined 2023)</p>
           </div>
           <div className="p-4 rounded-lg border border-gray-800">
             <h3 className="font-semibold">Certifications</h3>
