@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 
-// Full React + Tailwind Portfolio (dark theme + colorful fonts + WhatsApp notifications)
 export default function App() {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
   const [sending, setSending] = useState(false);
+
   const projects = [
     {
       id: 1,
@@ -35,7 +35,6 @@ export default function App() {
     }
     setSending(true);
 
-    // Replace with your actual WhatsApp number in international format (e.g., 254712345678)
     const phone = "254759670729";
     const text = `New portfolio message from ${form.name} (%0AEmail: ${form.email}%0A%0A${form.message})`;
     const whatsappUrl = `https://wa.me/${phone}?text=${text}`;
@@ -92,7 +91,13 @@ export default function App() {
       <section id="tech" className="max-w-5xl mx-auto px-6 mt-16">
         <h2 className="text-2xl font-semibold mb-4">🧠 My Tech Stack</h2>
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
-          {["HTML", "CSS", "JavaScript", "React", "Next.js", "Tailwind CSS", "Node.js", "Express.js", "Python", "Django", "FastAPI", "MongoDB", "MySQL", "PostgreSQL", "Firebase", "AWS", "GCP", "Azure", "Docker", "Kubernetes", "Linux", "Git", "GitHub", "Wireshark", "Nmap", "Burp Suite", "Metasploit"].map((tool) => (
+          {[
+            "HTML", "CSS", "JavaScript", "React", "Next.js", "Tailwind CSS", 
+            "Node.js", "Express.js", "Python", "Django", "FastAPI", "MongoDB", 
+            "MySQL", "PostgreSQL", "Firebase", "AWS", "GCP", "Azure", 
+            "Docker", "Kubernetes", "Linux", "Git", "GitHub", "Wireshark", 
+            "Nmap", "Burp Suite", "Metasploit"
+          ].map(tool => (
             <span key={tool} className="px-3 py-2 rounded-lg border border-gray-800 bg-gray-900 text-sm text-transparent bg-clip-text bg-gradient-to-r from-pink-300 to-cyan-200">
               {tool}
             </span>
@@ -123,7 +128,7 @@ export default function App() {
       <section id="projects" className="max-w-5xl mx-auto px-6 mt-16">
         <h2 className="text-2xl font-semibold mb-6">📁 Projects</h2>
         <div className="grid md:grid-cols-2 gap-6">
-          {projects.map((p) => (
+          {projects.map(p => (
             <div key={p.id} className="rounded-xl overflow-hidden border border-gray-800 bg-gray-900">
               <img src={p.img} alt={p.title} className="w-full h-44 object-cover" />
               <div className="p-4">
@@ -140,50 +145,25 @@ export default function App() {
       </section>
 
       {/* Contact Section */}
-<section id="contact" className="max-w-5xl mx-auto px-6 mt-16 mb-20">
-  <h2 className="text-2xl font-semibold mb-4">✉️ Contact Me</h2>
+      <section id="contact" className="max-w-5xl mx-auto px-6 mt-16 mb-20">
+        <h2 className="text-2xl font-semibold mb-4">✉️ Contact Me</h2>
+        <div className="grid md:grid-cols-2 gap-6">
+          <form onSubmit={handleSubmit} className="p-6 rounded-xl border border-gray-800 bg-gray-900">
+            <label className="block text-sm font-medium mb-2">Name</label>
+            <input name="name" value={form.name} onChange={handleChange} className="w-full px-3 py-2 rounded bg-black border border-gray-700 mb-3" />
 
-  <div className="grid md:grid-cols-2 gap-6">
-    <form 
-      onSubmit={handleSubmit} 
-      className="p-6 rounded-xl border border-gray-800 bg-gray-900"
-    >
-      <label className="block text-sm font-medium mb-2">Name</label>
-      <input 
-        name="name" 
-        value={form.name} 
-        onChange={handleChange} 
-        className="w-full px-3 py-2 rounded bg-black border border-gray-700 mb-3" 
-      />
+            <label className="block text-sm font-medium mb-2">Email</label>
+            <input name="email" value={form.email} onChange={handleChange} className="w-full px-3 py-2 rounded bg-black border border-gray-700 mb-3" />
 
-      <label className="block text-sm font-medium mb-2">Email</label>
-      <input 
-        name="email" 
-        value={form.email} 
-        onChange={handleChange} 
-        className="w-full px-3 py-2 rounded bg-black border border-gray-700 mb-3" 
-      />
+            <label className="block text-sm font-medium mb-2">Message</label>
+            <textarea name="message" value={form.message} onChange={handleChange} rows={4} className="w-full px-3 py-2 rounded bg-black border border-gray-700 mb-4" />
 
-      <label className="block text-sm font-medium mb-2">Message</label>
-      <textarea 
-        name="message" 
-        value={form.message} 
-        onChange={handleChange} 
-        rows={4} 
-        className="w-full px-3 py-2 rounded bg-black border border-gray-700 mb-4" 
-      />
+            <button type="submit" disabled={sending} className="w-full px-4 py-2 rounded-full bg-gradient-to-r from-purple-500 to-indigo-500 font-semibold">
+              {sending ? "Sending..." : "Send via WhatsApp"}
+            </button>
+          </form>
 
-      <button 
-        type="submit" 
-        disabled={sending} 
-        className="w-full px-4 py-2 rounded-full bg-gradient-to-r from-purple-500 to-indigo-500 font-semibold"
-      >
-        {sending ? "Sending..." : "Send via WhatsApp"}
-      </button>
-    </form>
-  </div>
-
-
+          {/* Direct Contact Info */}
 <div className="connect-section mt-4">
   <h3 className="connect-title">Connect With Me</h3>
 
@@ -247,6 +227,30 @@ export default function App() {
 
   </div>
 </div>
+
+        </div>
+
+        {/* Connect With Me Grid */}
+        <div className="connect-section mt-8">
+          <h3 className="connect-title text-xl font-semibold mb-4">Connect With Me</h3>
+          <div className="connect-grid grid grid-cols-2 md:grid-cols-3 gap-4">
+            {[
+              { href: "https://linkedin.com/in/ianirungu", label: "LinkedIn" },
+              { href: "https://www.instagram.com/ianh.irungu/", label: "Instagram" },
+              { href: "#", label: "YouTube" },
+              { href: "https://github.com/devianh", label: "GitHub" },
+              { href: "#", label: "TikTok" },
+              { href: "https://wa.me/254759670729", label: "WhatsApp" },
+              { href: "mailto:emrgian@gmail.com", label: "Email" },
+            ].map((c, i) => (
+              <a key={i} href={c.href} className="connect-card p-4 rounded-xl border border-gray-800 bg-gray-900 hover:bg-gray-800">
+                <div className="text">
+                  <h4 className="font-semibold">{c.label}</h4>
+                </div>
+              </a>
+            ))}
+          </div>
+        </div>
       </section>
 
       {/* Footer */}
@@ -256,7 +260,9 @@ export default function App() {
 
       {/* Floating WhatsApp */}
       <a href="https://wa.me/254759670729" target="_blank" rel="noreferrer" className="fixed right-6 bottom-6 p-4 rounded-full shadow-lg" style={{ background: 'linear-gradient(90deg,#25D366,#128C7E)' }}>
-        <svg width="26" height="26" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg"><path d="M20.52 3.48C18.27 1.22 15.18 0 12 0 5.37 0 .03 5.34.03 12c0 2.12.56 4.1 1.62 5.83L0 24l6.41-1.71C8.08 22.67 9.99 23.1 12 23.1c6.63 0 11.97-5.34 11.97-11.99 0-3.18-1.22-6.27-3.45-8.42zM12 21.5c-1.8 0-3.55-.48-5.06-1.39l-.36-.22-3.8 1.02 1.02-3.7-.23-.36C2.98 14.1 2.5 12.4 2.5 10.6 2.5 6.3 6.3 2.5 10.6 2.5c2.3 0 4.45.9 6.07 2.52 1.62 1.62 2.52 3.77 2.52 6.07 0 4.3-3.8 8.1-8.1 8.1z"/></svg>
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+          <path d="M20.52 3.48C18.27 1.22 15.18 0 12 0 5.37 0 .03 5.34.03 12c0 2.12.56 4.1 1.62 5.83L0 24l6.41-1.71C8.08 22.67 9.99 23.1 12 23.1c6.63 0 11.97-5.34 11.97-11.99 0-3.18-1.22-6.27-3.45-8.42zM12 21.5c-1.8 0-3.55-.48-5.06-1.39l-.36-.22-3.8 1.02 1.02-3.7-.23-.36C2.98 14.1 2.5 12.4 2.5 10.6 2.5 6.3 6.3 2.5 10.6 2.5c2.3 0 4.45.9 6.07 2.52 1.62 1.62 2.52 3.77 2.52 6.07 0 4.3-3.8 8.1-8.1 8.1z"/>
+        </svg>
       </a>
     </div>
   );
