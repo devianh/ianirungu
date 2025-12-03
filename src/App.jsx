@@ -231,44 +231,92 @@ export default function App() {
         </div>
 
         {/* Connect With Me Grid */}
-<div className="comment-section mt-4">
-  <h3 className="comment-title">Leave a Comment</h3>
+import React, { useState } from "react";
+import Navbar from "./components/Navbar";
+import Hero from "./components/Hero";
+import Projects from "./components/Projects";
+import Footer from "./components/Footer";
+import "./App.css";
 
-  {/* Comment Form */}
-  <form className="comment-form" onSubmit={handleSubmit}>
-    <input
-      type="text"
-      placeholder="Your name (optional)"
-      value={name}
-      onChange={(e) => setName(e.target.value)}
-      className="comment-input"
-    />
+function App() {
 
-    <textarea
-      placeholder="Write your comment..."
-      value={message}
-      onChange={(e) => setMessage(e.target.value)}
-      className="comment-textarea"
-      required
-    />
+  // COMMENT SECTION LOGIC
+  const [name, setName] = useState("");
+  const [message, setMessage] = useState("");
+  const [comments, setComments] = useState(() => {
+    return JSON.parse(localStorage.getItem("comments") || "[]");
+  });
 
-    <button className="comment-btn" type="submit">Post Comment</button>
-  </form>
+  const handleSubmit = (e) => {
+    e.preventDefault();
 
-  {/* Display Comments */}
-  <div className="comments-list">
-    {comments.length === 0 ? (
-      <p className="no-comments">No comments yet. Be the first!</p>
-    ) : (
-      comments.map((c, i) => (
-        <div key={i} className="comment-card">
-          <h4>{c.name === "" ? "Anonymous" : c.name}</h4>
-          <p>{c.message}</p>
+    const newComment = { 
+      name: name.trim(), 
+      message: message.trim() 
+    };
+
+    const updatedComments = [...comments, newComment];
+    setComments(updatedComments);
+    localStorage.setItem("comments", JSON.stringify(updatedComments));
+
+    setName("");
+    setMessage("");
+  };
+
+  return (
+    <div className="App">
+
+      <Navbar />
+      <Hero />
+      <Projects />
+
+      {/* COMMENT SECTION */}
+      <div className="comment-section mt-4">
+        <h3 className="comment-title">Leave a Comment</h3>
+
+        {/* Comment Form */}
+        <form className="comment-form" onSubmit={handleSubmit}>
+          <input
+            type="text"
+            placeholder="Your name (optional)"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            className="comment-input"
+          />
+
+          <textarea
+            placeholder="Write your comment..."
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
+            className="comment-textarea"
+            required
+          />
+
+          <button className="comment-btn" type="submit">Post Comment</button>
+        </form>
+
+        {/* Display Comments */}
+        <div className="comments-list">
+          {comments.length === 0 ? (
+            <p className="no-comments">No comments yet. Be the first!</p>
+          ) : (
+            comments.map((c, i) => (
+              <div key={i} className="comment-card">
+                <h4>{c.name === "" ? "Anonymous" : c.name}</h4>
+                <p>{c.message}</p>
+              </div>
+            ))
+          )}
         </div>
-      ))
-    )}
-  </div>
-</div>
+      </div>
+
+      <Footer />
+    </div>
+  );
+}
+
+export default App;
+
       </section>
 
       {/* Footer */}
