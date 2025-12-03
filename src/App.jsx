@@ -140,7 +140,48 @@ export default function App() {
       </section>
 
       {/* Contact Section */}
+<section id="contact" className="max-w-5xl mx-auto px-6 mt-16 mb-20">
+  <h2 className="text-2xl font-semibold mb-4">✉️ Contact Me</h2>
 
+  <div className="grid md:grid-cols-2 gap-6">
+    <form 
+      onSubmit={handleSubmit} 
+      className="p-6 rounded-xl border border-gray-800 bg-gray-900"
+    >
+      <label className="block text-sm font-medium mb-2">Name</label>
+      <input 
+        name="name" 
+        value={form.name} 
+        onChange={handleChange} 
+        className="w-full px-3 py-2 rounded bg-black border border-gray-700 mb-3" 
+      />
+
+      <label className="block text-sm font-medium mb-2">Email</label>
+      <input 
+        name="email" 
+        value={form.email} 
+        onChange={handleChange} 
+        className="w-full px-3 py-2 rounded bg-black border border-gray-700 mb-3" 
+      />
+
+      <label className="block text-sm font-medium mb-2">Message</label>
+      <textarea 
+        name="message" 
+        value={form.message} 
+        onChange={handleChange} 
+        rows={4} 
+        className="w-full px-3 py-2 rounded bg-black border border-gray-700 mb-4" 
+      />
+
+      <button 
+        type="submit" 
+        disabled={sending} 
+        className="w-full px-4 py-2 rounded-full bg-gradient-to-r from-purple-500 to-indigo-500 font-semibold"
+      >
+        {sending ? "Sending..." : "Send via WhatsApp"}
+      </button>
+    </form>
+  </div>
 
 
 <div className="connect-section mt-4">
