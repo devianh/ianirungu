@@ -231,26 +231,44 @@ export default function App() {
         </div>
 
         {/* Connect With Me Grid */}
-        <div className="connect-section mt-8">
-          <h3 className="connect-title text-xl font-semibold mb-4">Connect With Me</h3>
-          <div className="connect-grid grid grid-cols-2 md:grid-cols-3 gap-4">
-            {[
-              { href: "https://linkedin.com/in/ianirungu", label: "LinkedIn" },
-              { href: "https://www.instagram.com/ianh.irungu/", label: "Instagram" },
-              { href: "#", label: "YouTube" },
-              { href: "https://github.com/devianh", label: "GitHub" },
-              { href: "#", label: "TikTok" },
-              { href: "https://wa.me/254759670729", label: "WhatsApp" },
-              { href: "mailto:emrgian@gmail.com", label: "Email" },
-            ].map((c, i) => (
-              <a key={i} href={c.href} className="connect-card p-4 rounded-xl border border-gray-800 bg-gray-900 hover:bg-gray-800">
-                <div className="text">
-                  <h4 className="font-semibold">{c.label}</h4>
-                </div>
-              </a>
-            ))}
-          </div>
+<div className="comment-section mt-4">
+  <h3 className="comment-title">Leave a Comment</h3>
+
+  {/* Comment Form */}
+  <form className="comment-form" onSubmit={handleSubmit}>
+    <input
+      type="text"
+      placeholder="Your name (optional)"
+      value={name}
+      onChange={(e) => setName(e.target.value)}
+      className="comment-input"
+    />
+
+    <textarea
+      placeholder="Write your comment..."
+      value={message}
+      onChange={(e) => setMessage(e.target.value)}
+      className="comment-textarea"
+      required
+    />
+
+    <button className="comment-btn" type="submit">Post Comment</button>
+  </form>
+
+  {/* Display Comments */}
+  <div className="comments-list">
+    {comments.length === 0 ? (
+      <p className="no-comments">No comments yet. Be the first!</p>
+    ) : (
+      comments.map((c, i) => (
+        <div key={i} className="comment-card">
+          <h4>{c.name === "" ? "Anonymous" : c.name}</h4>
+          <p>{c.message}</p>
         </div>
+      ))
+    )}
+  </div>
+</div>
       </section>
 
       {/* Footer */}
