@@ -1,3 +1,48 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html, body, #root { height: 100%; }
+body { background-color: #000; color: #fff; }
+
+@layer components {
+
+  .connect-section {
+    @apply p-10 rounded-2xl bg-[#151c30] text-white;
+  }
+
+  .connect-title {
+    @apply text-2xl mb-5 pl-3 border-l-4 border-indigo-400;
+  }
+
+  .connect-grid {
+    @apply grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3;
+  }
+
+  .connect-card {
+    @apply flex items-center gap-4 bg-white/5 p-4 rounded-xl border border-white/10 
+           no-underline text-white transition transform duration-300;
+  }
+
+  .connect-card:hover {
+    @apply -translate-y-1 bg-white/10;
+  }
+
+  .icon {
+    @apply w-10 h-10 rounded-xl bg-cover bg-center;
+  }
+
+  .icon.linkedin  { background-image: url('https://cdn-icons-png.flaticon.com/512/3536/3536505.png'); }
+  .icon.instagram { background-image: url('https://cdn-icons-png.flaticon.com/512/2111/2111463.png'); }
+  .icon.youtube   { background-image: url('https://cdn-icons-png.flaticon.com/512/3670/3670147.png'); }
+  .icon.github    { background-image: url('https://cdn-icons-png.flaticon.com/512/733/733553.png'); }
+  .icon.tiktok    { background-image: url('https://cdn-icons-png.flaticon.com/512/3046/3046121.png'); }
+  .icon.whatsapp  { background-image: url('https://cdn-icons-png.flaticon.com/512/733/733585.png'); }
+  .icon.email     { background-image: url('https://cdn-icons-png.flaticon.com/512/732/732200.png'); }
+
+  .text h3 { @apply text-base font-semibold m-0; }
+  .text p  { @apply text-sm opacity-70 m-0; }
+}
 <div className="connect-section mt-4">
   <h3 className="connect-title">Connect With Me</h3>
 
