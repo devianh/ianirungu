@@ -231,15 +231,6 @@ export default function App() {
         </div>
 
         {/* Connect With Me Grid */}
-import React, { useState } from "react";
-import Navbar from "./components/Navbar";
-import Hero from "./components/Hero";
-import Projects from "./components/Projects";
-import Footer from "./components/Footer";
-import "./App.css";
-
-function App() {
-
   // COMMENT SECTION LOGIC
   const [name, setName] = useState("");
   const [message, setMessage] = useState("");
