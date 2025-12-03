@@ -2,21 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
-html, body, #root { height: 100%; }
-body { background-color: #000; color: #fff; }
-
 @layer components {
 
   .connect-section {
-    @apply p-10 rounded-2xl bg-[#151c30] text-white;
+    @apply p-6 rounded-2xl bg-[#151c30] text-white;
   }
 
   .connect-title {
-    @apply text-2xl mb-5 pl-3 border-l-4 border-indigo-400;
+    @apply text-xl mb-4 pl-3 border-l-4 border-indigo-400;
   }
 
   .connect-grid {
-    @apply grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3;
+    @apply grid gap-4 grid-cols-1 sm:grid-cols-2;
   }
 
   .connect-card {
@@ -40,69 +37,6 @@ body { background-color: #000; color: #fff; }
   .icon.whatsapp  { background-image: url('https://cdn-icons-png.flaticon.com/512/733/733585.png'); }
   .icon.email     { background-image: url('https://cdn-icons-png.flaticon.com/512/732/732200.png'); }
 
-  .text h3 { @apply text-base font-semibold m-0; }
+  .text h4 { @apply text-base font-semibold m-0; }
   .text p  { @apply text-sm opacity-70 m-0; }
 }
-<div className="connect-section mt-4">
-  <h3 className="connect-title">Connect With Me</h3>
-
-  <div className="connect-grid">
-
-    <a href="https://linkedin.com/in/ianirungu" className="connect-card">
-      <div className="icon linkedin"></div>
-      <div className="text">
-        <h4>LinkedIn</h4>
-        <p>Let's Connect</p>
-      </div>
-    </a>
-
-    <a href="https://www.instagram.com/ianh.irungu/" className="connect-card">
-      <div className="icon instagram"></div>
-      <div className="text">
-        <h4>Instagram</h4>
-        <p>@ianh.irungu</p>
-      </div>
-    </a>
-
-    <a href="#" className="connect-card">
-      <div className="icon youtube"></div>
-      <div className="text">
-        <h4>YouTube</h4>
-        <p>Add link later</p>
-      </div>
-    </a>
-
-    <a href="https://github.com/devianh" className="connect-card">
-      <div className="icon github"></div>
-      <div className="text">
-        <h4>GitHub</h4>
-        <p>@devianh</p>
-      </div>
-    </a>
-
-    <a href="#" className="connect-card">
-      <div className="icon tiktok"></div>
-      <div className="text">
-        <h4>TikTok</h4>
-        <p>@your_tiktok</p>
-      </div>
-    </a>
-
-    <a href="https://wa.me/254759670729" className="connect-card">
-      <div className="icon whatsapp"></div>
-      <div className="text">
-        <h4>WhatsApp</h4>
-        <p>+254 759 670 729</p>
-      </div>
-    </a>
-
-    <a href="mailto:emrgian@gmail.com" className="connect-card">
-      <div className="icon email"></div>
-      <div className="text">
-        <h4>Email</h4>
-        <p>emrgian@gmail.com</p>
-      </div>
-    </a>
-
-  </div>
-</div>
