@@ -267,88 +267,183 @@ export default function App() {
   );
 }
 
-/* COMMENT SECTION COMPONENT */
-function CommentSection() {
-  const [name, setName] = useState("");
-  const [comment, setComment] = useState("");
-  const [comments, setComments] = useState([]);
-  const [anonymous, setAnonymous] = useState(false);
+import React, { useEffect, useState } from "react";
+import { db } from "./firebase";
+import {
+  collection,
+  addDoc,
+  onSnapshot,
+  updateDoc,
+  deleteDoc,
+  doc,
+  serverTimestamp,
+} from "firebase/firestore";
 
+export default function CommentSection() {
+  const [comments, setComments] = useState([]);
+  const [input, setInput] = useState({ name: "", message: "" });
+  const [editingId, setEditingId] = useState(null);
+  const [editMessage, setEditMessage] = useState("");
+
+  // FETCH COMMENTS
   useEffect(() => {
-    const saved = JSON.parse(localStorage.getItem("portfolio-comments"));
-    if (saved) setComments(saved);
+    const unsub = onSnapshot(collection(db, "comments"), (snapshot) => {
+      const list = snapshot.docs
+        .map((d) => ({
+          id: d.id,
+          ...d.data(),
+        }))
+        .sort((a, b) => {
+          const tA = a.timestamp ? a.timestamp.toMillis() : 0;
+          const tB = b.timestamp ? b.timestamp.toMillis() : 0;
+          return tB - tA;
+        });
+
+      setComments(list);
+    });
+
+    return () => unsub();
   }, []);
 
-  const handleSubmit = (e) => {
+  // POST NEW COMMENT
+  async function handleSubmit(e) {
     e.preventDefault();
-    if (!comment.trim()) return;
+    if (!input.message.trim()) return alert("Message cannot be empty.");
 
-    const newComment = {
-      id: Date.now(),
-      name: anonymous || !name.trim() ? "Anonymous" : name.trim(),
-      text: comment.trim(),
-      time: new Date().toLocaleString(),
-    };
+    await addDoc(collection(db, "comments"), {
+      name: input.name || "Anonymous",
+      message: input.message,
+      likes: 0,
+      timestamp: serverTimestamp(),
+    });
 
-    const updated = [newComment, ...comments];
-    setComments(updated);
-    localStorage.setItem("portfolio-comments", JSON.stringify(updated));
+    setInput({ name: "", message: "" });
+  }
 
-    setComment("");
-    setName("");
-  };
+  // DELETE COMMENT
+  async function handleDelete(id) {
+    await deleteDoc(doc(db, "comments", id));
+  }
+
+  // START EDITING
+  function startEdit(comment) {
+    setEditingId(comment.id);
+    setEditMessage(comment.message);
+  }
+
+  // SAVE EDIT
+  async function saveEdit(id) {
+    if (!editMessage.trim()) return;
+
+    await updateDoc(doc(db, "comments", id), {
+      message: editMessage,
+    });
+
+    setEditingId(null);
+  }
+
+  // LIKE / UPVOTE COMMENT
+  async function likeComment(id, currentLikes) {
+    await updateDoc(doc(db, "comments", id), {
+      likes: currentLikes + 1,
+    });
+  }
 
   return (
-    <div className="max-w-5xl mx-auto px-6 mt-20">
-      <h2 className="text-2xl font-semibold mb-4 text-white">💬 Comments</h2>
+    <div className="max-w-4xl mx-auto mt-20 p-6 bg-gray-900 border border-gray-800 rounded-xl">
+      <h2 className="text-2xl font-semibold mb-4">💬 Comments</h2>
 
-      <form onSubmit={handleSubmit} className="p-6 rounded-xl border border-gray-800 bg-gray-900 space-y-4">
-
-        {!anonymous && (
-          <input
-            type="text"
-            placeholder="Your name (optional)"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            className="w-full px-3 py-2 rounded bg-black border border-gray-700"
-          />
-        )}
-
-        <label className="flex items-center gap-3 text-gray-300 text-sm">
-          <input type="checkbox" checked={anonymous} onChange={() => setAnonymous(!anonymous)} />
-          Post as Anonymous
-        </label>
-
-        <textarea
-          placeholder="Write your comment..."
-          value={comment}
-          onChange={(e) => setComment(e.target.value)}
-          className="w-full h-28 px-3 py-2 rounded bg-black border border-gray-700"
+      {/* FORM */}
+      <form onSubmit={handleSubmit} className="mb-6">
+        <input
+          type="text"
+          placeholder="Your name (optional)"
+          value={input.name}
+          onChange={(e) => setInput({ ...input, name: e.target.value })}
+          className="w-full mb-3 px-3 py-2 bg-black border border-gray-700 rounded"
         />
 
-        <button
-          type="submit"
-          className="w-full px-4 py-2 rounded-full bg-purple-600 text-black font-semibold hover:brightness-110"
-        >
+        <textarea
+          placeholder="Write a comment..."
+          value={input.message}
+          onChange={(e) => setInput({ ...input, message: e.target.value })}
+          rows="3"
+          className="w-full mb-3 px-3 py-2 bg-black border border-gray-700 rounded"
+        ></textarea>
+
+        <button className="px-6 py-2 bg-purple-600 text-black font-bold rounded-full hover:brightness-110">
           Post Comment
         </button>
       </form>
 
-      <div className="mt-8 space-y-4">
-        {comments.length === 0 ? (
-          <p className="text-gray-500 text-sm">No comments yet. Be the first!</p>
-        ) : (
-          comments.map((c) => (
-            <div key={c.id} className="p-4 border border-gray-800 bg-gray-900 rounded-lg">
-              <div className="flex justify-between mb-1">
-                <span className="font-semibold text-purple-300">{c.name}</span>
-                <span className="text-xs text-gray-500">{c.time}</span>
+      {/* COMMENTS LIST */}
+      <div className="space-y-4">
+        {comments.map((c) => (
+          <div
+            key={c.id}
+            className="p-4 bg-black border border-gray-800 rounded-lg"
+          >
+            <p className="text-sm text-gray-400">
+              {c.name || "Anonymous"} •{" "}
+              {c.timestamp?.toDate().toLocaleString() ?? ""}
+            </p>
+
+            {/* EDIT MODE */}
+            {editingId === c.id ? (
+              <div>
+                <textarea
+                  value={editMessage}
+                  onChange={(e) => setEditMessage(e.target.value)}
+                  rows="3"
+                  className="w-full mt-2 px-3 py-2 bg-gray-800 border border-gray-700 rounded"
+                ></textarea>
+
+                <div className="flex gap-3 mt-2">
+                  <button
+                    onClick={() => saveEdit(c.id)}
+                    className="px-4 py-1 bg-green-600 rounded"
+                  >
+                    Save
+                  </button>
+                  <button
+                    onClick={() => setEditingId(null)}
+                    className="px-4 py-1 bg-gray-600 rounded"
+                  >
+                    Cancel
+                  </button>
+                </div>
               </div>
-              <p className="text-gray-300">{c.text}</p>
+            ) : (
+              <p className="text-gray-200 mt-1">{c.message}</p>
+            )}
+
+            {/* ACTION BUTTONS */}
+            <div className="flex items-center gap-4 mt-3 text-sm">
+              <button
+                onClick={() => likeComment(c.id, c.likes || 0)}
+                className="text-purple-400 hover:underline"
+              >
+                👍 {c.likes || 0}
+              </button>
+
+              <button
+                onClick={() => startEdit(c)}
+                className="text-blue-400 hover:underline"
+              >
+                Edit
+              </button>
+
+              <button
+                onClick={() => handleDelete(c.id)}
+                className="text-red-400 hover:underline"
+              >
+                Delete
+              </button>
             </div>
-          ))
-        )}
+          </div>
+        ))}
       </div>
     </div>
   );
 }
+
