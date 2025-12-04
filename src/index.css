@@ -4,6 +4,8 @@
 
 @layer components {
 
+  /* ---------------- CONNECT SECTION ---------------- */
+
   .connect-section {
     @apply p-6 rounded-2xl bg-[#151c30] text-white;
   }
@@ -39,90 +41,52 @@
 
   .text h4 { @apply text-base font-semibold m-0; }
   .text p  { @apply text-sm opacity-70 m-0; }
-}
-.comment-section {
-  background: #0f1624;
-  padding: 30px;
-  border-radius: 20px;
-  margin-top: 40px;
-  width: 90%;
-  max-width: 1100px;
-  margin-left: auto;
-  margin-right: auto;
-}
 
-.comment-title {
-  font-size: 22px;
-  font-weight: 600;
-  color: #e5e5e5;
-  border-left: 4px solid #646cff;
-  padding-left: 10px;
-  margin-bottom: 25px;
-}
+  /* ---------------- COMMENT SECTION ---------------- */
 
-.comment-form {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
+  .comment-section {
+    @apply bg-[#0f1624] p-8 rounded-2xl mt-10 w-[90%] max-w-[1100px] mx-auto;
+  }
 
-.comment-input,
-.comment-textarea {
-  background: #141c2b;
-  color: white;
-  border: 1px solid #1f2a40;
-  border-radius: 12px;
-  padding: 12px;
-  font-size: 14px;
-}
+  .comment-title {
+    @apply text-[22px] font-semibold text-[#e5e5e5] border-l-4 border-[#646cff] pl-3 mb-6;
+  }
 
-.comment-textarea {
-  height: 100px;
-  resize: none;
-}
+  .comment-form {
+    @apply flex flex-col gap-4;
+  }
 
-.comment-btn {
-  background: #646cff;
-  padding: 12px;
-  border-radius: 10px;
-  border: none;
-  color: white;
-  cursor: pointer;
-  font-weight: 600;
-  transition: 0.2s;
-}
+  .comment-input,
+  .comment-textarea {
+    @apply bg-[#141c2b] text-white border border-[#1f2a40] rounded-xl p-3 text-sm;
+  }
 
-.comment-btn:hover {
-  opacity: 0.8;
-}
+  .comment-textarea {
+    @apply h-28 resize-none;
+  }
 
-.comments-list {
-  margin-top: 25px;
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
+  .comment-btn {
+    @apply bg-[#646cff] p-3 rounded-xl text-white font-semibold cursor-pointer 
+           transition duration-200 hover:opacity-80;
+  }
 
-.comment-card {
-  background: #141c2b;
-  padding: 20px;
-  border-radius: 12px;
-  border: 1px solid #1f2a40;
-}
+  .comments-list {
+    @apply mt-6 flex flex-col gap-4;
+  }
 
-.comment-card h4 {
-  margin: 0;
-  font-size: 16px;
-  color: #77a3ff;
-}
+  .comment-card {
+    @apply bg-[#141c2b] p-5 rounded-xl border border-[#1f2a40];
+  }
 
-.comment-card p {
-  margin-top: 8px;
-  color: #dcdcdc;
-}
+  .comment-card h4 {
+    @apply m-0 text-[16px] text-[#77a3ff];
+  }
 
-.no-comments {
-  text-align: center;
-  opacity: 0.5;
-}
+  .comment-card p {
+    @apply mt-2 text-[#dcdcdc];
+  }
 
+  .no-comments {
+    @apply text-center opacity-50;
+  }
+}
