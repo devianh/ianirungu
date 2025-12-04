@@ -50,7 +50,8 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-black text-white antialiased">
-      {/* Header */}
+
+      {/* HEADER */}
       <header className="max-w-5xl mx-auto px-6 py-6 flex justify-between items-center">
         <h1 className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">
           Ian Irungu
@@ -62,7 +63,7 @@ export default function App() {
         </nav>
       </header>
 
-      {/* Hero Section */}
+      {/* HERO */}
       <section className="flex flex-col items-center justify-center text-center mt-12 px-6">
         <div className="relative">
           <img src="/profile.jpg" alt="Profile" className="w-52 h-52 rounded-full object-cover shadow-lg" />
@@ -71,12 +72,15 @@ export default function App() {
             💻 Full Stack Developer
           </div>
         </div>
+
         <h2 className="mt-6 text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-300 to-blue-300">
           Building Secure, Scalable Web Apps
         </h2>
+
         <p className="mt-3 max-w-md text-gray-300">
           Full Stack Developer • Cloud Engineer • Cybersecurity Expert
         </p>
+
         <div className="mt-4 space-x-3">
           <a href="#projects" className="px-4 py-2 rounded-full border border-gray-700 hover:border-purple-400">
             View Projects
@@ -87,15 +91,16 @@ export default function App() {
         </div>
       </section>
 
-      {/* Tech Stack */}
+      {/* TECH STACK */}
       <section id="tech" className="max-w-5xl mx-auto px-6 mt-16">
         <h2 className="text-2xl font-semibold mb-4">🧠 My Tech Stack</h2>
+
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
           {[
-            "HTML", "CSS", "JavaScript", "React", "Next.js", "Tailwind CSS", 
-            "Node.js", "Express.js", "Python", "Django", "FastAPI", "MongoDB", 
-            "MySQL", "PostgreSQL", "Firebase", "AWS", "GCP", "Azure", 
-            "Docker", "Kubernetes", "Linux", "Git", "GitHub", "Wireshark", 
+            "HTML", "CSS", "JavaScript", "React", "Next.js", "Tailwind CSS",
+            "Node.js", "Express.js", "Python", "Django", "FastAPI", "MongoDB",
+            "MySQL", "PostgreSQL", "Firebase", "AWS", "GCP", "Azure",
+            "Docker", "Kubernetes", "Linux", "Git", "GitHub", "Wireshark",
             "Nmap", "Burp Suite", "Metasploit"
           ].map(tool => (
             <span key={tool} className="px-3 py-2 rounded-lg border border-gray-800 bg-gray-900 text-sm text-transparent bg-clip-text bg-gradient-to-r from-pink-300 to-cyan-200">
@@ -105,14 +110,15 @@ export default function App() {
         </div>
       </section>
 
-      {/* Education */}
+      {/* EDUCATION */}
       <section className="max-w-5xl mx-auto px-6 mt-16">
         <h2 className="text-2xl font-semibold mb-4">🎓 Education & Certifications</h2>
         <div className="grid sm:grid-cols-2 gap-4">
           <div className="p-4 rounded-lg border border-gray-800">
             <h3 className="font-semibold">B.Sc. Computer Science</h3>
-            <p className="text-sm text-gray-400">Egerton University — student(joined 2023)</p>
+            <p className="text-sm text-gray-400">Egerton University — student (joined 2023)</p>
           </div>
+
           <div className="p-4 rounded-lg border border-gray-800">
             <h3 className="font-semibold">Certifications</h3>
             <ul className="mt-2 text-sm text-gray-300 list-disc list-inside">
@@ -124,19 +130,22 @@ export default function App() {
         </div>
       </section>
 
-      {/* Projects */}
+      {/* PROJECTS */}
       <section id="projects" className="max-w-5xl mx-auto px-6 mt-16">
         <h2 className="text-2xl font-semibold mb-6">📁 Projects</h2>
+
         <div className="grid md:grid-cols-2 gap-6">
           {projects.map(p => (
             <div key={p.id} className="rounded-xl overflow-hidden border border-gray-800 bg-gray-900">
               <img src={p.img} alt={p.title} className="w-full h-44 object-cover" />
+
               <div className="p-4">
                 <h3 className="font-semibold text-lg mb-1">{p.title}</h3>
                 <p className="text-sm text-gray-400 mb-3">{p.desc}</p>
+
                 <div className="flex space-x-3">
-                  <a href={p.live} target="_blank" rel="noreferrer" className="px-3 py-2 rounded-md border border-gray-700 hover:border-cyan-400">🔗 Live Demo</a>
-                  <a href={p.repo} target="_blank" rel="noreferrer" className="px-3 py-2 rounded-md bg-purple-600 text-black font-semibold">💻 View on GitHub</a>
+                  <a href={p.live} target="_blank" className="px-3 py-2 rounded-md border border-gray-700 hover:border-cyan-400">🔗 Live Demo</a>
+                  <a href={p.repo} target="_blank" className="px-3 py-2 rounded-md bg-purple-600 text-black font-semibold">💻 GitHub</a>
                 </div>
               </div>
             </div>
@@ -144,10 +153,12 @@ export default function App() {
         </div>
       </section>
 
-      {/* Contact Section */}
-      <section id="contact" className="max-w-5xl mx-auto px-6 mt-16 mb-20">
+      {/* CONTACT FORM */}
+      <section id="contact" className="max-w-5xl mx-auto px-6 mt-16">
         <h2 className="text-2xl font-semibold mb-4">✉️ Contact Me</h2>
+
         <div className="grid md:grid-cols-2 gap-6">
+          {/* FORM */}
           <form onSubmit={handleSubmit} className="p-6 rounded-xl border border-gray-800 bg-gray-900">
             <label className="block text-sm font-medium mb-2">Name</label>
             <input name="name" value={form.name} onChange={handleChange} className="w-full px-3 py-2 rounded bg-black border border-gray-700 mb-3" />
@@ -163,164 +174,91 @@ export default function App() {
             </button>
           </form>
 
-          {/* Direct Contact Info */}
-<div className="connect-section mt-4">
-  <h3 className="connect-title">Connect With Me</h3>
+          {/* DIRECT CONTACT GRID (MOVED TO BOTTOM) */}
+          <div className="connect-section mt-4">
+            <h3 className="connect-title">Connect With Me</h3>
 
-  <div className="connect-grid">
+            <div className="connect-grid">
 
-    <a href="https://linkedin.com/in/ianirungu" className="connect-card">
-      <div className="icon linkedin"></div>
-      <div className="text">
-        <h4>LinkedIn</h4>
-        <p>Let's Connect</p>
-      </div>
-    </a>
+              <a href="https://linkedin.com/in/ianirungu" className="connect-card">
+                <div className="icon linkedin"></div>
+                <div className="text">
+                  <h4>LinkedIn</h4>
+                  <p>Let's Connect</p>
+                </div>
+              </a>
 
-    <a href="https://www.instagram.com/ianh.irungu/" className="connect-card">
-      <div className="icon instagram"></div>
-      <div className="text">
-        <h4>Instagram</h4>
-        <p>@ianh.irungu</p>
-      </div>
-    </a>
+              <a href="https://www.instagram.com/ianh.irungu/" className="connect-card">
+                <div className="icon instagram"></div>
+                <div className="text">
+                  <h4>Instagram</h4>
+                  <p>@ianh.irungu</p>
+                </div>
+              </a>
 
-    <a href="#" className="connect-card">
-      <div className="icon youtube"></div>
-      <div className="text">
-        <h4>YouTube</h4>
-        <p>Add link later</p>
-      </div>
-    </a>
+              <a href="#" className="connect-card">
+                <div className="icon youtube"></div>
+                <div className="text">
+                  <h4>YouTube</h4>
+                  <p>Add link later</p>
+                </div>
+              </a>
 
-    <a href="https://github.com/devianh" className="connect-card">
-      <div className="icon github"></div>
-      <div className="text">
-        <h4>GitHub</h4>
-        <p>@devianh</p>
-      </div>
-    </a>
+              <a href="https://github.com/devianh" className="connect-card">
+                <div className="icon github"></div>
+                <div className="text">
+                  <h4>GitHub</h4>
+                  <p>@devianh</p>
+                </div>
+              </a>
 
-    <a href="#" className="connect-card">
-      <div className="icon tiktok"></div>
-      <div className="text">
-        <h4>TikTok</h4>
-        <p>@your_tiktok</p>
-      </div>
-    </a>
+              <a href="#" className="connect-card">
+                <div className="icon tiktok"></div>
+                <div className="text">
+                  <h4>TikTok</h4>
+                  <p>@your_tiktok</p>
+                </div>
+              </a>
 
-    <a href="https://wa.me/254759670729" className="connect-card">
-      <div className="icon whatsapp"></div>
-      <div className="text">
-        <h4>WhatsApp</h4>
-        <p>+254 759 670 729</p>
-      </div>
-    </a>
+              <a href="https://wa.me/254759670729" className="connect-card">
+                <div className="icon whatsapp"></div>
+                <div className="text">
+                  <h4>WhatsApp</h4>
+                  <p>+254 759 670 729</p>
+                </div>
+              </a>
 
-    <a href="mailto:emrgian@gmail.com" className="connect-card">
-      <div className="icon email"></div>
-      <div className="text">
-        <h4>Email</h4>
-        <p>emrgian@gmail.com</p>
-      </div>
-    </a>
+              <a href="mailto:emrgian@gmail.com" className="connect-card">
+                <div className="icon email"></div>
+                <div className="text">
+                  <h4>Email</h4>
+                  <p>emrgian@gmail.com</p>
+                </div>
+              </a>
 
-  </div>
-</div>
-
+            </div>
+          </div>
         </div>
-
-        {/* Connect With Me Grid */}
-  // COMMENT SECTION LOGIC
-  const [name, setName] = useState("");
-  const [message, setMessage] = useState("");
-  const [comments, setComments] = useState(() => {
-    return JSON.parse(localStorage.getItem("comments") || "[]");
-  });
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    const newComment = { 
-      name: name.trim(), 
-      message: message.trim() 
-    };
-
-    const updatedComments = [...comments, newComment];
-    setComments(updatedComments);
-    localStorage.setItem("comments", JSON.stringify(updatedComments));
-
-    setName("");
-    setMessage("");
-  };
-
-  return (
-    <div className="App">
-
-      <Navbar />
-      <Hero />
-      <Projects />
-
-      {/* COMMENT SECTION */}
-      <div className="comment-section mt-4">
-        <h3 className="comment-title">Leave a Comment</h3>
-
-        {/* Comment Form */}
-        <form className="comment-form" onSubmit={handleSubmit}>
-          <input
-            type="text"
-            placeholder="Your name (optional)"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            className="comment-input"
-          />
-
-          <textarea
-            placeholder="Write your comment..."
-            value={message}
-            onChange={(e) => setMessage(e.target.value)}
-            className="comment-textarea"
-            required
-          />
-
-          <button className="comment-btn" type="submit">Post Comment</button>
-        </form>
-
-        {/* Display Comments */}
-        <div className="comments-list">
-          {comments.length === 0 ? (
-            <p className="no-comments">No comments yet. Be the first!</p>
-          ) : (
-            comments.map((c, i) => (
-              <div key={i} className="comment-card">
-                <h4>{c.name === "" ? "Anonymous" : c.name}</h4>
-                <p>{c.message}</p>
-              </div>
-            ))
-          )}
-        </div>
-      </div>
-
-      <Footer />
-    </div>
-  );
-}
-
-export default App;
-
       </section>
 
-      {/* Footer */}
-      <footer className="border-t border-gray-800 py-6 text-center text-sm text-gray-400">
+      {/* FOOTER */}
+      <footer className="border-t border-gray-800 py-6 text-center text-sm text-gray-400 mt-20">
         © {new Date().getFullYear()} Ian Irungu. Built with ❤️ | Full Stack • Cloud • Security
       </footer>
 
-      {/* Floating WhatsApp */}
-      <a href="https://wa.me/254759670729" target="_blank" rel="noreferrer" className="fixed right-6 bottom-6 p-4 rounded-full shadow-lg" style={{ background: 'linear-gradient(90deg,#25D366,#128C7E)' }}>
-        <svg width="26" height="26" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
-          <path d="M20.52 3.48C18.27 1.22 15.18 0 12 0 5.37 0 .03 5.34.03 12c0 2.12.56 4.1 1.62 5.83L0 24l6.41-1.71C8.08 22.67 9.99 23.1 12 23.1c6.63 0 11.97-5.34 11.97-11.99 0-3.18-1.22-6.27-3.45-8.42zM12 21.5c-1.8 0-3.55-.48-5.06-1.39l-.36-.22-3.8 1.02 1.02-3.7-.23-.36C2.98 14.1 2.5 12.4 2.5 10.6 2.5 6.3 6.3 2.5 10.6 2.5c2.3 0 4.45.9 6.07 2.52 1.62 1.62 2.52 3.77 2.52 6.07 0 4.3-3.8 8.1-8.1 8.1z"/>
+      {/* FLOATING WHATSAPP BUTTON */}
+      <a 
+        href="https://wa.me/254759670729" 
+        target="_blank" 
+        rel="noreferrer" 
+        className="fixed right-6 bottom-6 p-4 rounded-full shadow-lg" 
+        style={{ background: 'linear-gradient(90deg,#25D366,#128C7E)' }}
+      >
+        <svg width="26" height="26" fill="white" viewBox="0 0 24 24">
+          <path d="M20.52 3.48C18.27 1.22 15.18 0 12 0 5.37 0 .03 5.34.03 12c0 2.12.56 4.1 1.62 5.83L0 24l6.41-1.71C8.08 22.67 9.99 23.1 12 23.1c6.63 0 11.97-5.34 11.97-11.99 0-3.18-1.22-6.27-3.45-8.42z"/>
         </svg>
       </a>
+
     </div>
   );
 }
