@@ -241,6 +241,94 @@ export default function App() {
         </div>
       </section>
 
+      function CommentSection() {
+  const [name, setName] = useState("");
+  const [comment, setComment] = useState("");
+  const [comments, setComments] = useState([]);
+  const [anonymous, setAnonymous] = useState(false);
+
+  // Load previous comments
+  useEffect(() => {
+    const saved = JSON.parse(localStorage.getItem("portfolio-comments"));
+    if (saved) setComments(saved);
+  }, []);
+
+  // Submit handler
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!comment.trim()) return;
+
+    const newComment = {
+      id: Date.now(),
+      name: anonymous || !name.trim() ? "Anonymous" : name.trim(),
+      text: comment.trim(),
+      time: new Date().toLocaleString(),
+    };
+
+    const updated = [newComment, ...comments];
+    setComments(updated);
+    localStorage.setItem("portfolio-comments", JSON.stringify(updated));
+
+    setComment("");
+    setName("");
+  };
+
+  return (
+    <div className="max-w-5xl mx-auto px-6 mt-20">
+      <h2 className="text-2xl font-semibold mb-4 text-white">💬 Comments</h2>
+
+      <form onSubmit={handleSubmit} className="p-6 rounded-xl border border-gray-800 bg-gray-900 space-y-4">
+        
+        {!anonymous && (
+          <input
+            type="text"
+            placeholder="Your name (optional)"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            className="w-full px-3 py-2 rounded bg-black border border-gray-700"
+          />
+        )}
+
+        <label className="flex items-center gap-3 text-gray-300 text-sm">
+          <input type="checkbox" checked={anonymous} onChange={() => setAnonymous(!anonymous)} />
+          Post as Anonymous
+        </label>
+
+        <textarea
+          placeholder="Write your comment..."
+          value={comment}
+          onChange={(e) => setComment(e.target.value)}
+          className="w-full h-28 px-3 py-2 rounded bg-black border border-gray-700"
+        />
+
+        <button
+          type="submit"
+          className="w-full px-4 py-2 rounded-full bg-purple-600 text-black font-semibold hover:brightness-110"
+        >
+          Post Comment
+        </button>
+      </form>
+
+      {/* COMMENTS LIST */}
+      <div className="mt-8 space-y-4">
+        {comments.length === 0 ? (
+          <p className="text-gray-500 text-sm">No comments yet. Be the first!</p>
+        ) : (
+          comments.map((c) => (
+            <div key={c.id} className="p-4 border border-gray-800 bg-gray-900 rounded-lg">
+              <div className="flex justify-between mb-1">
+                <span className="font-semibold text-purple-300">{c.name}</span>
+                <span className="text-xs text-gray-500">{c.time}</span>
+              </div>
+              <p className="text-gray-300">{c.text}</p>
+            </div>
+          ))
+        )}
+      </div>
+    </div>
+  );
+}
+
       {/* FOOTER */}
       <footer className="border-t border-gray-800 py-6 text-center text-sm text-gray-400 mt-20">
         © {new Date().getFullYear()} Ian Irungu. Built with ❤️ | Full Stack • Cloud • Security
