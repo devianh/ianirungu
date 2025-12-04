@@ -1,13 +1,13 @@
 import { useState, useEffect } from "react";
 
 export default function App() {
-
   /* ---------------- CONTACT FORM ---------------- */
   const [form, setForm] = useState({
     name: "",
     email: "",
-    message: ""
+    message: "",
   });
+
   const [sending, setSending] = useState(false);
 
   const projects = [
@@ -35,10 +35,12 @@ export default function App() {
 
   function handleSubmit(e) {
     e.preventDefault();
+
     if (!form.name || !form.email || !form.message) {
       alert("Please fill out all fields.");
       return;
     }
+
     setSending(true);
 
     const phone = "254759670729";
@@ -59,13 +61,11 @@ export default function App() {
   const [commentText, setCommentText] = useState("");
   const [comments, setComments] = useState([]);
 
-  // Load saved comments
   useEffect(() => {
     const saved = JSON.parse(localStorage.getItem("comments")) || [];
     setComments(saved);
   }, []);
 
-  // Save to local storage when comments change
   useEffect(() => {
     localStorage.setItem("comments", JSON.stringify(comments));
   }, [comments]);
@@ -144,8 +144,8 @@ export default function App() {
             "Node.js", "Express.js", "Python", "Django", "FastAPI", "MongoDB",
             "MySQL", "PostgreSQL", "Firebase", "AWS", "GCP", "Azure",
             "Docker", "Kubernetes", "Linux", "Git", "GitHub",
-            "Wireshark", "Nmap", "Burp Suite", "Metasploit"
-          ].map(tool => (
+            "Wireshark", "Nmap", "Burp Suite", "Metasploit",
+          ].map((tool) => (
             <span
               key={tool}
               className="px-3 py-2 rounded-lg border border-gray-800 bg-gray-900 text-sm text-transparent bg-clip-text bg-gradient-to-r from-pink-300 to-cyan-200"
@@ -161,7 +161,6 @@ export default function App() {
         <h2 className="text-2xl font-semibold mb-4">🎓 Education & Certifications</h2>
 
         <div className="grid sm:grid-cols-2 gap-4">
-
           <div className="p-4 rounded-lg border border-gray-800">
             <h3 className="font-semibold">B.Sc. Computer Science</h3>
             <p className="text-sm text-gray-400">Egerton University — student (joined 2023)</p>
@@ -175,7 +174,6 @@ export default function App() {
               <li>Google Cloud Engineer</li>
             </ul>
           </div>
-
         </div>
       </section>
 
@@ -184,7 +182,7 @@ export default function App() {
         <h2 className="text-2xl font-semibold mb-6">📁 Projects</h2>
 
         <div className="grid md:grid-cols-2 gap-6">
-          {projects.map(p => (
+          {projects.map((p) => (
             <div key={p.id} className="rounded-xl overflow-hidden border border-gray-800 bg-gray-900">
               <img src={p.img} alt={p.title} className="w-full h-44 object-cover" />
 
@@ -193,10 +191,18 @@ export default function App() {
                 <p className="text-sm text-gray-400 mb-3">{p.desc}</p>
 
                 <div className="flex space-x-3">
-                  <a href={p.live} target="_blank" className="px-3 py-2 rounded-md border border-gray-700 hover:border-cyan-400">
+                  <a
+                    href={p.live}
+                    target="_blank"
+                    className="px-3 py-2 rounded-md border border-gray-700 hover:border-cyan-400"
+                  >
                     🔗 Live Demo
                   </a>
-                  <a href={p.repo} target="_blank" className="px-3 py-2 rounded-md bg-purple-600 text-black font-semibold">
+                  <a
+                    href={p.repo}
+                    target="_blank"
+                    className="px-3 py-2 rounded-md bg-purple-600 text-black font-semibold"
+                  >
                     💻 GitHub
                   </a>
                 </div>
@@ -211,7 +217,6 @@ export default function App() {
         <h2 className="text-2xl font-semibold mb-4">✉️ Contact Me</h2>
 
         <div className="grid md:grid-cols-2 gap-6">
-
           {/* FORM */}
           <form onSubmit={handleSubmit} className="p-6 rounded-xl border border-gray-800 bg-gray-900">
             <label className="block text-sm font-medium mb-2">Name</label>
@@ -314,7 +319,7 @@ export default function App() {
         </div>
       </section>
 
-      {/* ---------------- COMMENT SECTION ---------------- */}
+      {/* COMMENTS */}
       <section id="comments" className="max-w-5xl mx-auto px-6 mt-20 mb-20">
         <h2 className="text-2xl font-semibold mb-4">💬 Visitor Comments</h2>
 
@@ -340,7 +345,7 @@ export default function App() {
           </button>
         </form>
 
-        {/* COMMENTS LIST */}
+        {/* COMMENT LIST */}
         <div className="mt-6 space-y-4">
           {comments.length === 0 && (
             <p className="text-gray-400">No comments yet. Be the first!</p>
@@ -355,6 +360,7 @@ export default function App() {
           ))}
         </div>
       </section>
+
     </div>
   );
 }
