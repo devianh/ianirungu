@@ -1,4 +1,14 @@
 import React, { useState, useEffect } from "react";
+import { db } from "./firebase";
+import {
+  collection,
+  addDoc,
+  onSnapshot,
+  updateDoc,
+  deleteDoc,
+  doc,
+  serverTimestamp,
+} from "firebase/firestore";
 
 export default function App() {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
@@ -103,7 +113,10 @@ export default function App() {
             "Docker", "Kubernetes", "Linux", "Git", "GitHub", "Wireshark",
             "Nmap", "Burp Suite", "Metasploit"
           ].map(tool => (
-            <span key={tool} className="px-3 py-2 rounded-lg border border-gray-800 bg-gray-900 text-sm text-transparent bg-clip-text bg-gradient-to-r from-pink-300 to-cyan-200">
+            <span
+              key={tool}
+              className="px-3 py-2 rounded-lg border border-gray-800 bg-gray-900 text-sm text-transparent bg-clip-text bg-gradient-to-r from-pink-300 to-cyan-200"
+            >
               {tool}
             </span>
           ))}
@@ -175,7 +188,7 @@ export default function App() {
             </button>
           </form>
 
- {/* DIRECT CONTACT GRID (MOVED TO BOTTOM) */}
+          {/* DIRECT CONTACT GRID */}
           <div className="connect-section mt-4">
             <h3 className="connect-title">Connect With Me</h3>
 
@@ -242,7 +255,6 @@ export default function App() {
         </div>
       </section>
 
-
       {/* COMMENTS SECTION */}
       <CommentSection />
 
@@ -267,25 +279,16 @@ export default function App() {
   );
 }
 
-import React, { useEffect, useState } from "react";
-import { db } from "./firebase";
-import {
-  collection,
-  addDoc,
-  onSnapshot,
-  updateDoc,
-  deleteDoc,
-  doc,
-  serverTimestamp,
-} from "firebase/firestore";
+/* ============================
+    COMMENT SECTION COMPONENT
+============================ */
 
-export default function CommentSection() {
+function CommentSection() {
   const [comments, setComments] = useState([]);
   const [input, setInput] = useState({ name: "", message: "" });
   const [editingId, setEditingId] = useState(null);
   const [editMessage, setEditMessage] = useState("");
 
-  // FETCH COMMENTS
   useEffect(() => {
     const unsub = onSnapshot(collection(db, "comments"), (snapshot) => {
       const list = snapshot.docs
@@ -305,7 +308,6 @@ export default function CommentSection() {
     return () => unsub();
   }, []);
 
-  // POST NEW COMMENT
   async function handleSubmit(e) {
     e.preventDefault();
     if (!input.message.trim()) return alert("Message cannot be empty.");
@@ -320,18 +322,15 @@ export default function CommentSection() {
     setInput({ name: "", message: "" });
   }
 
-  // DELETE COMMENT
   async function handleDelete(id) {
     await deleteDoc(doc(db, "comments", id));
   }
 
-  // START EDITING
   function startEdit(comment) {
     setEditingId(comment.id);
     setEditMessage(comment.message);
   }
 
-  // SAVE EDIT
   async function saveEdit(id) {
     if (!editMessage.trim()) return;
 
@@ -342,7 +341,6 @@ export default function CommentSection() {
     setEditingId(null);
   }
 
-  // LIKE / UPVOTE COMMENT
   async function likeComment(id, currentLikes) {
     await updateDoc(doc(db, "comments", id), {
       likes: currentLikes + 1,
@@ -369,7 +367,7 @@ export default function CommentSection() {
           onChange={(e) => setInput({ ...input, message: e.target.value })}
           rows="3"
           className="w-full mb-3 px-3 py-2 bg-black border border-gray-700 rounded"
-        ></textarea>
+        />
 
         <button className="px-6 py-2 bg-purple-600 text-black font-bold rounded-full hover:brightness-110">
           Post Comment
@@ -388,7 +386,6 @@ export default function CommentSection() {
               {c.timestamp?.toDate().toLocaleString() ?? ""}
             </p>
 
-            {/* EDIT MODE */}
             {editingId === c.id ? (
               <div>
                 <textarea
@@ -417,7 +414,6 @@ export default function CommentSection() {
               <p className="text-gray-200 mt-1">{c.message}</p>
             )}
 
-            {/* ACTION BUTTONS */}
             <div className="flex items-center gap-4 mt-3 text-sm">
               <button
                 onClick={() => likeComment(c.id, c.likes || 0)}
@@ -446,4 +442,3 @@ export default function CommentSection() {
     </div>
   );
 }
-
