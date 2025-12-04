@@ -175,13 +175,14 @@ export default function App() {
             </button>
           </form>
 
-          {/* CONTACT GRID */}
-          <div>
-            <h3 className="text-lg font-semibold mb-4">Connect With Me</h3>
+ {/* DIRECT CONTACT GRID (MOVED TO BOTTOM) */}
+          <div className="connect-section mt-4">
+            <h3 className="connect-title">Connect With Me</h3>
 
             <div className="connect-grid">
 
               <a href="https://linkedin.com/in/ianirungu" className="connect-card">
+                <div className="icon linkedin"></div>
                 <div className="text">
                   <h4>LinkedIn</h4>
                   <p>Let's Connect</p>
@@ -189,20 +190,47 @@ export default function App() {
               </a>
 
               <a href="https://www.instagram.com/ianh.irungu/" className="connect-card">
+                <div className="icon instagram"></div>
                 <div className="text">
                   <h4>Instagram</h4>
                   <p>@ianh.irungu</p>
                 </div>
               </a>
 
+              <a href="#" className="connect-card">
+                <div className="icon youtube"></div>
+                <div className="text">
+                  <h4>YouTube</h4>
+                  <p>Add link later</p>
+                </div>
+              </a>
+
               <a href="https://github.com/devianh" className="connect-card">
+                <div className="icon github"></div>
                 <div className="text">
                   <h4>GitHub</h4>
                   <p>@devianh</p>
                 </div>
               </a>
 
+              <a href="#" className="connect-card">
+                <div className="icon tiktok"></div>
+                <div className="text">
+                  <h4>TikTok</h4>
+                  <p>@your_tiktok</p>
+                </div>
+              </a>
+
+              <a href="https://wa.me/254759670729" className="connect-card">
+                <div className="icon whatsapp"></div>
+                <div className="text">
+                  <h4>WhatsApp</h4>
+                  <p>+254 759 670 729</p>
+                </div>
+              </a>
+
               <a href="mailto:emrgian@gmail.com" className="connect-card">
+                <div className="icon email"></div>
                 <div className="text">
                   <h4>Email</h4>
                   <p>emrgian@gmail.com</p>
@@ -213,6 +241,7 @@ export default function App() {
           </div>
         </div>
       </section>
+
 
       {/* COMMENTS SECTION */}
       <CommentSection />
